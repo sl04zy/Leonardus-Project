@@ -9,7 +9,7 @@ from colorama import Fore, Back, Style
 colorama.init(autoreset=False)
 
 client = commands.Bot(command_prefix='leo ')
-token = 'ODQ4Mjg5MDQ4ODgzMzYzOTAx.YLKcvQ.BNyeOTUy1C58wNdo8Cnbg-PPqE4'
+token = ''
 
 # start event
 @client.event
