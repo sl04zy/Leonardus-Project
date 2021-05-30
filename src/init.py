@@ -8,13 +8,13 @@ import colorama
 from colorama import Fore, Back, Style
 colorama.init(autoreset=False)
 
-client = commands.Bot(command_prefix='leo ')
-token = 'ODQ4Mjg5MDQ4ODgzMzYzOTAx.YLKcvQ.BNyeOTUy1C58wNdo8Cnbg-PPqE4'
+client = commands.Bot(command_prefix='leo ') # Bot command prefix. Example: leo [command] [args]
+token = '' # No
 
 # start event
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.online, activity=discord.Game("Creating a better world."))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game("Creating a better world.")) # Is used to set a custom status to the bot
     print(f"""
 {Fore.YELLOW} __                          _         
 |  |   ___ ___ ___ ___ ___ _| |_ _ ___ 
@@ -33,13 +33,14 @@ async def on_ready():
 """)
 
 
-
+# Command for loading existing cogs without restarting the bot
 @client.command()
 @has_permissions(administrator=True)
 async def load(ctx, extension):
     client.load_extension(f"cogs.{extension}")
     await ctx.send(f"*{extension} loaded!*")
 
+# Command for reloading any cog
 @client.command()
 @has_permissions(administrator=True)
 async def reload(ctx, extension):
@@ -47,13 +48,14 @@ async def reload(ctx, extension):
     client.load_extension(f"cogs.{extension}")
     await ctx.send(f"*{extension} reloaded!*")
 
+# Command for unloading existing cogs without restarting the bot
 @client.command()
 @has_permissions(administrator=True)
 async def unload(ctx, extension):
     client.unload_extension(f"cogs.{extension}")
     await ctx.send(f"*{extension} unloaded!*")
 
-
+# Loop for loading/starting cogs
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')

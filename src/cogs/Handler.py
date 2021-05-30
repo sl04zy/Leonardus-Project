@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord.ext.commands import has_permissions, CheckFailure
 
 
-class Handler(commands.Cog):  # Class NomeClasse(commands.Cog)
+class Handler(commands.Cog):
 
     def __init__(self, client):
         self.client = client
@@ -11,11 +11,9 @@ class Handler(commands.Cog):  # Class NomeClasse(commands.Cog)
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send(":x: **Errore:** missing required argment.")
+            await ctx.send(":x: **Error:** missing required argment.")
         if isinstance(error, commands.CommandNotFound):
-            await ctx.send(":x: **Errore:** unknown command.")
-        if isinstance(error, commands.InvalidArgument):
-            await ctx.send(":x: **Errore:** invalid parameters.")
+            await ctx.send(":x: **Error:** unknown command.")
         if isinstance(error, commands.MemberNotFound):
             await ctx.send(":x: **Error:** member not found.")
 
