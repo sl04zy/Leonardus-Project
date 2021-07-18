@@ -27,7 +27,7 @@ class woman(commands.Cog):
         gatti = ['https://cataas.com/cat/cute/says/coccolami', 'https://cataas.com/cat/cute/says/troia', 'https://cataas.com/cat/cute/says/venerami', 'https://cataas.com/cat/cute/says/bastardo']
         if message.content.startswith('catto'):
             await message.channel.send(choice(gatti))
-        ducks = [ 'https://random-d.uk/api/randomimg?t=1626020422988, 'https://random-d.uk/api/randomimg?t=1626020422988', 'https://random-d.uk/api/randomimg?t=1626020422988' ]
+        ducks = [ 'https://random-d.uk/api/randomimg?t=1626020422988', 'https://random-d.uk/api/randomimg?t=1626020422988', 'https://random-d.uk/api/randomimg?t=1626020422988' ]
         if message.content.startswith('papera'):
             await message.channel.send(choice(ducks))
 # avvio

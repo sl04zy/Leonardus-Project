@@ -2,6 +2,9 @@
 import discord
 import asyncio
 import os
+import random
+from random import choice
+from discord import channel
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions, CheckFailure
 import colorama
@@ -10,6 +13,7 @@ colorama.init(autoreset=False)
 
 client = commands.Bot(command_prefix='leo ') # Bot command prefix. Example: leo [command] [args]
 token = '' # No
+
 
 # start event
 @client.event
@@ -31,6 +35,19 @@ async def on_ready():
 {Fore.RED}Format: leo [command]{Fore.RESET}{Style.RESET_ALL}
 
 """)
+    Log = open("log.txt", "a")
+    Log.write(f"\n\n[!] Leonardus Started [!]\n\n")
+    Log.close()
+
+
+@client.command(aliases=["shutdown"])
+@has_permissions(administrator=True)
+async def spegni(ctx):
+    message = await ctx.send("*Spegnimento in corso...*")
+    await asyncio.sleep(3)
+    await message.edit(content="*Spegmimento compeltato!*")
+    await ctx.bot.logout()
+
 
 
 # Command for loading existing cogs without restarting the bot

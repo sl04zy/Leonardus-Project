@@ -13,7 +13,7 @@ class Handler(commands.Cog):
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.send(":x: **Error:** missing required argment.")
         if isinstance(error, commands.CommandNotFound):
-            await ctx.send(":x: **Error:** unknown command.")
+            await ctx.send(":x: **Error:** unknown command. Use *leo help* for a list of commands.")
         if isinstance(error, commands.MemberNotFound):
             await ctx.send(":x: **Error:** member not found.")
 

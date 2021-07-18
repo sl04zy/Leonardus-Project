@@ -64,6 +64,17 @@ class Punishments(commands.Cog):
         await ctx.guild.kick(member)
         await ctx.send(f"{member.mention} has been kicked from the server.")
 
+    # Mute command
+    @commands.command(aliases=['Mute'])
+    @has_permissions(kick_members=True)
+    async def mute(self, ctx, member: discord.Member, duration: DurationConverter):
+        multiplier = {'s': 1, 'm': 60, 'h': 3600, 'd': 86400} # Multiplier. This is needed for converting seconds to minutes, hours and days.
+        amount, unit = duration
+        muted_role = discord.utils.get(ctx.guild.roles, name="Muted")
+        await member.add_roles(muted_role)
+        await ctx.send(f"{member.mention} has been muted from the chat.")
+        await asyncio.sleep(amount * multiplier[unit])
+        await member.remove_roles(muted_role)
 
 def setup(client):
     client.add_cog(Punishments(client))
