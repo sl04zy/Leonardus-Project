@@ -31,9 +31,14 @@ class Punishments(commands.Cog):
         multiplier = {'s': 1, 'm': 60, 'h': 3600, 'd': 86400} # Multiplier. This is needed for converting seconds to minutes, hours and days.
         amount, unit = duration
         await ctx.guild.ban(member)
+        Log = open("log.txt", "a")
+        Log.write(f"\n[Punishment] Tempban info:\n - {member.mention} has been banned \n - Duration: {duration} \n - Author: {ctx.author.mention}\n")
+        Log.close()
         await ctx.send(f"{member.mention} has been temporaly banned from the server.")
         await asyncio.sleep(amount * multiplier[unit])
         await ctx.guild.unban(member)
+
+
 
     # Ban command
     @commands.command(aliases=["Ban"])
@@ -41,6 +46,10 @@ class Punishments(commands.Cog):
     async def ban(self, ctx, member: commands.MemberConverter):
         await ctx.guild.ban(member)
         await ctx.send(f"{member.mention} has been banned the server.")
+        Log = open("log.txt", "a")
+        Log.write(f"\n[Punishment] Ban info:\n - {member.mention} has been banned \n - Author: {ctx.author.mention}\n")
+        Log.close()
+
 
     # Unban command
     @commands.command(aliases=["Unban", "UnBan"])
@@ -52,6 +61,9 @@ class Punishments(commands.Cog):
             user = ban_entry.user
             if (user.name, user.discriminator) == (member_name, member_discriminator):
                 await ctx.guild.unban(user)
+                Log = open("log.txt", "a")
+                Log.write(f"\n[Punishment] UnBan info:\n - {member.mention} has been unbanned \n - Author: {ctx.author.mention}\n")
+                Log.close()
                 await ctx.send(f"{member.mention} has been unbanned.")
                 print(f"User unbanned\n User: {member}")
                 return
@@ -63,6 +75,9 @@ class Punishments(commands.Cog):
     async def kick(self, ctx, member: commands.MemberConverter):
         await ctx.guild.kick(member)
         await ctx.send(f"{member.mention} has been kicked from the server.")
+        Log = open("log.txt", "a")
+        Log.write(f"\n[Punishment] Kick info:\n - {member.mention} has been kick \n - Author: {ctx.author.mention}\n")
+        Log.close()
 
     # Mute command
     @commands.command(aliases=['Mute'])
@@ -75,6 +90,10 @@ class Punishments(commands.Cog):
         await ctx.send(f"{member.mention} has been muted from the chat.")
         await asyncio.sleep(amount * multiplier[unit])
         await member.remove_roles(muted_role)
+        Log = open("log.txt", "a")
+        Log.write(f"\n[Punishment] Mute info:\n - {member.mention} has been muted \n - Duration: {duration} \n - Author: {ctx.author.mention}\n")
+        Log.close()
+
 
 def setup(client):
     client.add_cog(Punishments(client))

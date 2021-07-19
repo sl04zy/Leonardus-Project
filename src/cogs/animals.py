@@ -12,14 +12,12 @@ from colorama import Fore, Back, Style
 colorama.init(autoreset=False)
 
 # definizione classe
-class woman(commands.Cog):
+class Animals(commands.Cog):
     
 
     def __init__(self, client):
         self.client = client
 
-    # @commands.Cog.listener(self) x eventi
-    # commands.command(self)
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.content.startswith('napolestoria'):
@@ -32,4 +30,4 @@ class woman(commands.Cog):
             await message.channel.send(choice(ducks))
 # avvio
 def setup(client):
-    client.add_cog(woman(client))
+    client.add_cog(Animals(client))

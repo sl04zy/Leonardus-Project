@@ -40,37 +40,60 @@ async def on_ready():
     Log.close()
 
 
+def jacopo(ctx):
+    return ctx.author.id == 601010597970051072
+
 @client.command(aliases=["shutdown"])
-@has_permissions(administrator=True)
+@commands.is_owner()
 async def spegni(ctx):
     message = await ctx.send("*Spegnimento in corso...*")
     await asyncio.sleep(3)
     await message.edit(content="*Spegmimento compeltato!*")
+    Log = open("log.txt", "a")
+    Log.write(f"\n[!] Leonardus Stopped [!]\n\n")
+    Log.close()
     await ctx.bot.logout()
 
 
 
 # Command for loading existing cogs without restarting the bot
 @client.command()
-@has_permissions(administrator=True)
+@commands.is_owner()
+@commands.check(jacopo)
 async def load(ctx, extension):
     client.load_extension(f"cogs.{extension}")
     await ctx.send(f"*{extension} loaded!*")
+    Log = open("log.txt", "a")
+    Log.write(f"\n[Extentions] {extension} loaded\n")
+    Log.close()
+
 
 # Command for reloading any cog
 @client.command()
-@has_permissions(administrator=True)
+@commands.is_owner()
+@commands.check(jacopo)
 async def reload(ctx, extension):
     client.unload_extension(f"cogs.{extension}")
     client.load_extension(f"cogs.{extension}")
     await ctx.send(f"*{extension} reloaded!*")
+    Log = open("log.txt", "a")
+    Log.write(f"\n[Extentions] {extension} reloaded\n")
+    Log.close()
+
+
 
 # Command for unloading existing cogs without restarting the bot
 @client.command()
-@has_permissions(administrator=True)
+@commands.is_owner()
+@commands.check(jacopo)
 async def unload(ctx, extension):
     client.unload_extension(f"cogs.{extension}")
     await ctx.send(f"*{extension} unloaded!*")
+    Log = open("log.txt", "a")
+    Log.write(f"\n[Extentions] {extension} unloaded\n")
+    Log.close()
+
+
 
 # Loop for loading/starting cogs
 for filename in os.listdir('./cogs'):
