@@ -5,7 +5,7 @@ Leonardus is an open-source discord bot. Anyone can use his code and maybe learn
 
 
 
-## **DISLAIMER**
+## **DISCLAIMER**
 I am not a professional discord developer. I code only in my spare time. If there are some errors please, don't kill me.
 
 
