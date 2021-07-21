@@ -1,15 +1,12 @@
 import discord
 import asyncio
-import os
 import random
 from random import choice
 from discord import channel
 from discord import client
 from discord.ext import commands, tasks
 from discord.ext.commands import has_permissions, CheckFailure
-import colorama
-from colorama import Fore, Back, Style
-colorama.init(autoreset=False)
+
 
 # definizione classe
 class Animals(commands.Cog):
